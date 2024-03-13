@@ -6,4 +6,5 @@ public class UrlEndpointsData {
     public static final String REGISTER_URL = "/api/auth/register";
     public static final String LOGIN_URL = "/api/auth/login";
     public static final String ORDER_URL = "/api/orders";
+    public static final String INGREDIETS_URL = "api/ingredients";
 }

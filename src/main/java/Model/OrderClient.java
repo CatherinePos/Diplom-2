@@ -8,15 +8,16 @@ import java.util.List;
 
 import static io.restassured.RestAssured.given;
 import static Model.UrlEndpointsData.ORDER_URL;
+import static Model.UrlEndpointsData.INGREDIETS_URL;
+import Model.OrderData;
 
 public class OrderClient {
-    private final List<String> ingredientsListTest = List.of("61c0c5a71d1f82001bdaaa6d", "61c0c5a71d1f82001bdaaa73", "61c0c5a71d1f82001bdaaa70", "61c0c5a71d1f82001bdaaa77");
+    private List<String> ingredientsListTest;
     private final List<String> ingredientsIncorrectListTest = List.of("61cxxxxx1d1f82001bdaaa6d", "61cxxxxx1d1f82001bdaaa73", "61cxxxxx1d1f82001bdaaa70", "61cxxxxx1d1f82001bdaaa77");
 
     public List<String> getIngredientsListTest() {
-        return ingredientsListTest;
+       return ingredientsListTest;
     }
-
     public List<String> getIngredientsIncorrectListTest() {
         return ingredientsIncorrectListTest;
     }
@@ -45,7 +46,7 @@ public class OrderClient {
                 .auth().oauth2(token)
                 .body(orderData)
                 .when()
-                .post(ORDER_URL);
+                .get(INGREDIETS_URL);
     }
 
     @Step("Создание заказа без авторизации c существующими ингредиентами")
@@ -54,7 +55,7 @@ public class OrderClient {
                 .contentType(ContentType.JSON)
                 .body(orderData)
                 .when()
-                .post(ORDER_URL);
+                .get(INGREDIETS_URL);
     }
 
     @Step("Создание заказа c авторизацией без ингредиентов")
@@ -75,5 +76,4 @@ public class OrderClient {
                 .when()
                 .post(ORDER_URL);
     }
-
 }
